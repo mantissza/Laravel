@@ -1,0 +1,17 @@
+{
+    "name": "dosina/composer_demo",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Dosina\\ComposerDemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dorina Pátyerkó"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.23"
+    }
+}

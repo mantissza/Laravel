@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MÁSIK</title>
-</head>
-<body>
-<h1>MÁSIK</h1>
+@extends('elrend')
+
+@section('title', 'Másik')
+
+@section('content')
     @php
-        $num = 3;
+        $num = 4;
         $posts = [
             (object)[
                 'title'   => 'Egy almafa',
@@ -35,11 +31,46 @@
 
     @if ($num == 3)
         <h2>Három</h2>
+    @elseif ($num == 4)
+        <h2>Négy</h2>
+    @else 
+        <h2>Valami más</h2>
     @endif
 
     <?php if ($num == 3): ?>
         <h2>Három</h2>
     <?php endif ?>
 
-</body>
-</html>
+    @switch($num)
+        @case(1)
+        <h2>Egy</h2>
+            @break
+        @case(2)
+        <h2>Kettő</h2>
+            @break
+        @default
+            <h2>Nem egy, nem kettő</h2>
+    @endswitch
+
+    @unless ($num == 5)
+        Nem öt
+    @endunless
+
+    @for($i = 0; $i < 9; $i++)
+        {{$i}}
+    @endfor
+
+    @foreach ($posts as $p)
+        <h2>{{$p -> title}}</h2>
+        <i>{{$p -> author}}</i>
+        {{$p -> content}}
+    @endforeach
+
+    @forelse ($posts as $p)
+        <h2>{{ $loop -> iteration }}. {{$p -> title}}</h2>
+        <i>{{$p -> author}}</i>
+        {{$p -> content}}
+    @empty 
+        Nincsenek bejegyzések.
+    @endforelse
+@endsection

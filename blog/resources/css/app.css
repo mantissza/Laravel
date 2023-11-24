@@ -1,0 +1,11 @@
+@import url('@fortawesome/fontawesome-free/css/all.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+.btn{
+    @apply px-5 py-2 bg-purple-500 text-white font-bold;
+}
+*/

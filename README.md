@@ -16,7 +16,7 @@
 
 ### Megkezdett Laravel project beüzemelése git-ből
 1. `composer install`
-2. `copy .\.env.example .env`
+2. `copy .\.env.example .env` 500-as error ellen
 3. `php artisan key:generate`
 4. `php artisan serve`
 
@@ -24,6 +24,7 @@
 - Laravel Blade Snippets
 - Laravel Snippets
 - PHP Intelephense
+- SQLite Viewer
 
 ### Random generátor
 - [Faker](https://fakerphp.github.io/)
@@ -97,9 +98,26 @@
     - `User::find(11)->delete()` User törlése (Booleanban visszadja, hogy sikeres a törlés.)
     - `User::destroy(9)` User törlése rövidebben (Visszadja, hogy hányat törölt.)
     
-    - `php artisan make:model Post -mfs` Kérek hozzák egy migration-t, factory-t és seeder-t
+- `php artisan make:model Post -mfs` Kérek hozzák egy migration-t, factory-t és seeder-t
 
-    - `php artisan migrate:fresh --seed`
-    - `Post::find(4)->user` A 4-es postot ki írta?
-    - `User::find(Post::find(4)->user_id)` ua.
-    - `User::find(2)->posts` A 2-es user összes postját szeretném visszakérni 
+- `php artisan migrate:fresh --seed`
+- `Post::find(4)->user` A 4-es postot ki írta?
+- `User::find(Post::find(4)->user_id)` ua.
+- `User::find(2)->posts` A 2-es user összes postját szeretném visszakérni 
+
+## Modellek és kapcsolatok
+
+Many to many
+- `Post::first() -> author() -> associate(User::first()) -> save()` Az első postot az első userhez rendelem. Kell associate-nál a save()-t használni, hogy bekerüljön az adatbázisba!
+- `php artisan make:migration create_category_post_table` Nevezéktan: ABD szerint egyes számban!
+- `Post::first() -> categories() -> attach([1,2])` Összekapcsolás: Az első posthoz az 1-es és 2-es kategóriát kapcsolja (Nem kell save()-elni, mert egyből a kapcsolótáblán dolgozik)
+- `Post::first() -> categories` Összekapcsolás megtekintése
+- `Post::first() -> categories -> pluck('id')` ua, de csak az id-kat mutatja
+- `Post::first() -> categories() -> detach([2])` kategória levétele
+- ` Post::first() -> categories() -> toggle([1, 2])` ami rajta van azt leszedi, ami nincs rajta azt ráadja
+- `Post::first() -> categories() -> sync([3, 4])` csak azzal lesz kapcsolatban, amit pontosan megadok a sync függvényben
+- `Post::all() -> random()` random kiválaszt egy postot (param: hány random?) - 2x nem dobja ugyanazt
+- `Category::all() -> random(rand(1, Category::count()))`
+
+- `php artisan make:controller PostController --resource --model=Post`
+    - Http/Controllers

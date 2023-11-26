@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +15,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return view('posts.index');
 });
+*/
 
+Route::get('/', [PostController::class, 'index']);
+
+
+Route::resource('posts', PostController::class);
+Route::resource('categories', CategoryController::class);
+
+/*
 Route::get('/categories/create', function () {
     return view('categories.create');
 });
+*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');

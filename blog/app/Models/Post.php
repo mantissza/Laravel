@@ -12,9 +12,9 @@ class Post extends Model
     protected $fillable = ['title', 'content', 'author_id'];
 
     public function author(){
-        return $this->belongsTo(User::class, 'author_id');
-    }    
-    
+        return $this->belongsTo(User::class); // Itt mégsem kell második paraméternek megadni az 'author_id'-t, mert már a function nevéből ezt kikövetkezteti a Laravel.
+    }
+
     public function categories(){
         return $this->belongsToMany(Category::class);
     }

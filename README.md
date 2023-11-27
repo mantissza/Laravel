@@ -51,6 +51,10 @@
 - [Alpine.js](https://alpinejs.dev/)
 - [Vanilla-picker](https://www.npmjs.com/package/vanilla-picker)
     - `npm i vanilla-picker`
+- Tailwind CSS IntelliSense (vscode addon)
+- Alpine.js IntelliSense (vscode addon)
+- `php artisan lang:publish` Laravel 10-ben már nem szerepel a lang mappa a root-ban, így ezzel a paranccsal hozzá kell adni.
+- [regex101](https://regex101.com/)
 
 ## Adatbázis
 

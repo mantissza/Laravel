@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create', ['categories' => Category::all()]);
     }
 
     /**
@@ -36,7 +36,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request -> validate(
+            ['title' => 'required',
+            'content' => 'required',
+            'categories' => 'nullable', //Nem kötelező kategóriát választani
+            'categories.*' => 'integer|distinct|exists:categories,id'], // legyen szám, különböző, a számhoz létezzen a kategóriák táblából egy id mező.
+            ['name.required' => 'A név kitöltése kötelező!',
+            'name.min' => 'A név legalább :min karakter legyen!',
+            'name.unique' => 'A név legyen egyedi!'] // Külön megadható a hibaüzenet szövege, az alapértelmezett szövegek a lang/en/validation.php-ben található.
+        );
+
+        $p = Post::create($validated); // Post létrehozása
+        $p -> author() -> associate(User::all() -> random() ) -> save();
+        $p -> categories() -> sync($request -> categories);
+
+        // Session::flash('post-created', $p -> name);
+
+        return redirect() -> route('home');
     }
 
     /**

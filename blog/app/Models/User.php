@@ -44,6 +44,6 @@ class User extends Authenticatable
     ];
 
     public function posts(){
-        return $this -> hasMany(Post::class);
+        return $this -> hasMany(Post::class, 'author_id'); // Ezen az oldalon nem ismerte fel, míg a Post model-ben ige, hiszen a functionnek is az author() nevet adtam. (tinker: User::first() -> posts hibát dobott)
     }
 }

@@ -77,7 +77,6 @@
 - `blog\database\seeders\DatabaseSeeder.php`
     - `\App\Models\User::factory(10)->create();` // Generáljunk 10 db usert a factory-vel - make-el létrehozza, de nem rakja be a DB-be, create-el be is rakja.
 - `php artisan db:seed` Meghívom a seederem, ami legenerálja a 10 usert
-
 - `php artisan tinker`
     - `User::all()` Visszaad egy collectiont, amiben benne van a 10 db user adata
     - `User::find(4)` Visszaadja a 4-es ID-jú usert
@@ -101,9 +100,7 @@
     - `User::create(['name'=>'Ez meg az', 'email'=>'ad@ad.hu', 'password'=>'asdasd'])` Új user létrehozása
     - `User::find(11)->delete()` User törlése (Booleanban visszadja, hogy sikeres a törlés.)
     - `User::destroy(9)` User törlése rövidebben (Visszadja, hogy hányat törölt.)
-    
 - `php artisan make:model Post -mfs` Kérek hozzák egy migration-t, factory-t és seeder-t
-
 - `php artisan migrate:fresh --seed`
 - `Post::find(4)->user` A 4-es postot ki írta?
 - `User::find(Post::find(4)->user_id)` ua.
@@ -122,6 +119,7 @@ Many to many
 - `Post::first() -> categories() -> sync([3, 4])` csak azzal lesz kapcsolatban, amit pontosan megadok a sync függvényben
 - `Post::all() -> random()` random kiválaszt egy postot (param: hány random?) - 2x nem dobja ugyanazt
 - `Category::all() -> random(rand(1, Category::count()))`
-
 - `php artisan make:controller PostController --resource --model=Post`
     - Http/Controllers
+
+

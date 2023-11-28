@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image_filename')->nullable();
             $table->boolean('hidden')->default(false);
             $table->timestamps();
+            $table->softDeletes(); // Létrejön a deleted_at oszlop, amelybe a törlés ideje kerül. Post::withTrashed()-el kilistázza az így törölteket is.
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
 
         });

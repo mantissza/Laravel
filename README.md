@@ -129,3 +129,7 @@ Many to many
 
 ## Route
 - `php artisan route:list` Kilistázza az összes útvonalat
+
+## Soft delete
+- `softDeletes()`
+- `Post::withTrashed() -> where('id', 15) -> restore()` Visszahozza a soft delete-el törölt postot. (Helyreállítás)

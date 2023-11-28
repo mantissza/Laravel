@@ -96,6 +96,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post -> delete(); // Torli a postot
+        return redirect() -> route('home'); // ... majd átirányít
     }
 }

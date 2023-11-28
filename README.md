@@ -53,6 +53,7 @@
     - `npm i vanilla-picker`
 - Tailwind CSS IntelliSense (vscode addon)
 - Alpine.js IntelliSense (vscode addon)
+- Babel JavaScript (vscode addon)
 - `php artisan lang:publish` Laravel 10-ben már nem szerepel a lang mappa a root-ban, így ezzel a paranccsal hozzá kell adni.
 - [regex101](https://regex101.com/)
 
@@ -125,3 +126,6 @@ Many to many
 ## Fájlkezelés
 
 - `php artisan storage:link` parancsot le kell futtatni, hogy ne dobjon a képre 404-es hibát.
+
+## Route
+- `php artisan route:list` Kilistázza az összes útvonalat

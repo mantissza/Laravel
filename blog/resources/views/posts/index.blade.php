@@ -44,9 +44,9 @@
                         <p class="text-gray-600 mt-1">
                             {{ Str::limit($p -> content, 100) }}
                         </p>
-                        <button
+                        <a href="{{route('posts.show', $p)}}"
                             class="bg-blue-500 hover:bg-blue-600 px-1.5 py-1 text-white mt-3 font-semibold">Elolvasom <i
-                                class="fas fa-angle-right"></i></button>
+                                class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
                 @endforeach

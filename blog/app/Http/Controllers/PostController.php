@@ -31,6 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
+        if(!Auth::user())
+            return redirect() -> route('login'); // Ha nincs bejelentkezve, akkor elküldöm a login oldalra.
         return view('posts.create', ['categories' => Category::all()]);
     }
 
@@ -39,6 +41,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if(!Auth::user())
+            return abort(403); // Ha nincs autentikált user, akkor térjen vissza 403-as hibával.
         $validated = $request -> validate(
             ['title' => 'required',
             'content' => 'required',

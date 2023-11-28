@@ -7,12 +7,14 @@
         <div>
             <h1 class="font-bold my-4 text-4xl">Szerveroldali Blog</h1>
         </div>
+        @auth {{-- Csak bejelentkezett felhasználó tudja látni a gombokat, de önmagában ez nem elég, hiszen az útvonal még működik --}}
         <div class="flex items-center gap-2 lg:justify-end">
             <a href="{{ route('categories.create')}}" class="bg-green-500 hover:bg-green-700 px-2 py-1 text-white"><i
                     class="fas fa-plus-circle"></i> Új kategória</a>
             <a href="{{ route('posts.create')}}" class="bg-green-500 hover:bg-green-700 px-2 py-1 text-white"><i
                     class="fas fa-plus-circle"></i> Új bejegyzés</a>
         </div>
+        @endauth
     </div>
     <div class="grid grid-cols-4 gap-6">
         <div class="col-span-4 lg:col-span-3">

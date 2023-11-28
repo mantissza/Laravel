@@ -17,8 +17,9 @@ class PostController extends Controller
     {
         return view('posts.index', [
             //'posts' => Post::all() // Túl sok lekérdezés fog végbemenni, ha hozzá van kapcsolva másik tábla.
-            'posts' => Post::with('author') -> get(), // Eager loading: Előre betölti az author-okat, hogy ne menet közben kelljen újra meghívni a user táblából.
+            'posts' => Post::with('author') -> paginate(9), // Eager loading: Előre betölti az author-okat, hogy ne menet közben kelljen újra meghívni a user táblából.
             'categories' => Category::all(),
+            'post_count' => Post::count(),
             'user_count' => User::count(),
             'comment_count' => 0
         ]);

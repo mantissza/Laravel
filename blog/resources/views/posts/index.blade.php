@@ -49,6 +49,7 @@
                 </div>
                 @endforeach
             </div>
+            {{ $posts -> links() }} {{-- Kigenerálj a navigációs linkeket --}}
         </div>
         <div class="col-span-4 lg:col-span-1">
             <h2 class="font-semibold text-3xl my-2">Menü</h2>
@@ -80,7 +81,7 @@
                     </h3>
                     <ul class="fa-ul">
                         <li><span class="fa-li"><i class="fas fa-user"></i></span>Felhasználók: {{$user_count}}</li>
-                        <li><span class="fa-li"><i class="fas fa-file-alt"></i></span>Bejegyzések: {{ $posts -> count()}}</li>
+                        <li><span class="fa-li"><i class="fas fa-file-alt"></i></span>Bejegyzések: {{ $post_count}}</li>
                         <li><span class="fa-li"><i class="fas fa-comments"></i></span>Hozzászólások: {{$comment_count}}</li>
                     </ul>
                 </div>

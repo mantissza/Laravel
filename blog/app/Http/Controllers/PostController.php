@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -54,7 +55,7 @@ class PostController extends Controller
         }
 
         $p = Post::create($validated); // Post létrehozása
-        $p -> author() -> associate(User::all() -> random() ) -> save();
+        $p -> author() -> associate( Auth::user() ) -> save();
         $p -> categories() -> sync($request -> categories);
 
         // Session::flash('post-created', $p -> name);

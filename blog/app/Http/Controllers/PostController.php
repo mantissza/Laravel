@@ -96,7 +96,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post -> delete(); // Torli a postot
-        return redirect() -> route('home'); // ... majd átirányít
+        if(Auth::user() != null && Auth::id() == $post -> author -> id) // A bejelentkezett user egyezzen meg a post szerzőjével.
+            $post -> delete(); // Torli a postot
+            return redirect() -> route('home'); // ... majd átirányít
     }
 }

@@ -133,3 +133,7 @@ Many to many
 ## Soft delete
 - `softDeletes()`
 - `Post::withTrashed() -> where('id', 15) -> restore()` Visszahozza a soft delete-el törölt postot. (Helyreállítás)
+
+## Policy
+Meghatározom, hogy a user megnézhet e bármilyen postot, vagy egy konkrét postot
+- `php artisan make:policy PostPolicy --model=Post` 

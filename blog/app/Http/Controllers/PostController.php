@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -40,11 +41,16 @@ class PostController extends Controller
             ['title' => 'required',
             'content' => 'required',
             'categories' => 'nullable', //Nem kötelező kategóriát választani
-            'categories.*' => 'integer|distinct|exists:categories,id'], // legyen szám, különböző, a számhoz létezzen a kategóriák táblából egy id mező.
-            ['name.required' => 'A név kitöltése kötelező!',
-            'name.min' => 'A név legalább :min karakter legyen!',
-            'name.unique' => 'A név legyen egyedi!'] // Külön megadható a hibaüzenet szövege, az alapértelmezett szövegek a lang/en/validation.php-ben található.
+            'categories.*' => 'integer|distinct|exists:categories,id',
+            'image_file' => 'nullable|image'], // legyen szám, különböző, a számhoz létezzen a kategóriák táblából egy id mező.
         );
+
+        if ($request -> hasfile('image_file')){
+            $file = $request -> file('image_file');
+            $fname = $file -> hashName();
+            Storage::disk('public') -> put('images/' . $fname, $file -> get());
+            $validated['image_filename'] = $fname;
+        }
 
         $p = Post::create($validated); // Post létrehozása
         $p -> author() -> associate(User::all() -> random() ) -> save();

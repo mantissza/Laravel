@@ -24,10 +24,14 @@
                     A(z) {{Session::get('category-created')}} kategória létrejött!
                 </div>
                 @endif
-
+                
                 @foreach ($posts as $p)
                 <div class="col-span-3 lg:col-span-1">
+                    @if($p-> image_filename === null)
                     <img src="https://www.ispreview.co.uk/wp-content/uploads/london_city_2017_uk.jpg">
+                    @else 
+                    <img src="{{ Storage::url('images/'. $p -> image_filename)}}">
+                    @endif
                     <div class="px-2.5 py-2 border-r border-l border-b border-gray-400 ">
                         <h3 class="text-xl mb-0.5 font-semibold">
                             {{ $p -> title }}

@@ -122,4 +122,6 @@ Many to many
 - `php artisan make:controller PostController --resource --model=Post`
     - Http/Controllers
 
+## Fájlkezelés
 
+- `php artisan storage:link` parancsot le kell futtatni, hogy ne dobjon a képre 404-es hibát.

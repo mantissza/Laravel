@@ -47,6 +47,7 @@ class PostPolicy
     {
         // return ($user != null && $user -> id == $post -> author -> id)
         return ($user != null && $user -> is($post -> author)); // Az is() fg-el modelleket lehet összehasonlítani.
+        // return ($user != null && $user -> is_admin); // A user táblába kell egy is_admin oszlop, így odarendelhetőek a szerepköréhez plus feature-ök.
     }
 
     /**
